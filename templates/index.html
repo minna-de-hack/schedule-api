@@ -12,7 +12,7 @@
         <div class="row">
           <h5 class="card-title">{{title}}</h5>
           {% if start!=""%}
-          <h6 class="card-subtitle mb-3 text-muted">日時 : {{start}} ~ {{stop}}</h6>
+          <h6 class="card-subtitle mb-3 text-muted">日時 : {{start}} ~ {{end}}</h6>
           {% endif %}          
           <div class="col-8">
             {% if description!="" %}
@@ -21,7 +21,15 @@
           </div>
           <div class="col-4" style="text-align: center;">
             <div style="position:relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-              <a href={{url}} class="btn btn-primary">予定を登録</a>
+              <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  予定を登録
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{{url}}">Google カレンダー</a></li>
+                  <li><a class="dropdown-item" href="{{export_url}}">iCalendarとして保存</a></li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
