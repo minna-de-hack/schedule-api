@@ -26,7 +26,10 @@
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"ms-python.python",
-				"ms-toolsai.jupyter"
+				"ms-toolsai.jupyter",
+				"formulahendry.auto-rename-tag",
+				"ecmel.vscode-html-css",
+				"ms-python.isort"
 			]
 		}
 	},
