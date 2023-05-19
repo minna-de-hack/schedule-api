@@ -9,6 +9,10 @@ from fastapi.templating import Jinja2Templates
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
+@app.get("/")
+async def root():
+    return RedirectResponse(url="https://github.com/minna-de-hack/schedule-api")
+
 @app.get("/api")
 async def makeschedule(request: Request, title: str = "", description: str = "", dates: str = ""):
     context = {"request": request, "title": title, "description": description}
@@ -32,12 +36,7 @@ async def makeschedule(request: Request, title: str = "", description: str = "",
 
     return templates.TemplateResponse("index.html", context)
 
-@app.get("/")
-async def root():
-    return RedirectResponse(url="https://github.com/minna-de-hack/schedule-api")
-
 # http://localhost/sample/
-
 @app.get("/sample/", response_class=HTMLResponse)
 async def sample():
     return """
