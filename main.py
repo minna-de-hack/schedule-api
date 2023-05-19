@@ -4,7 +4,6 @@ import urllib.parse
 import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
-from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
@@ -32,12 +31,25 @@ async def makeschedule(request: Request, title: str = "", description: str = "",
     context["url"] = baseurl + d_qs
 
     return templates.TemplateResponse("index.html", context)
-    # ie. 
-    # http://localhost/api?title=sample+title&description=Today+is+Friday+in+California&dates=20201201T120000/20201201T121000
 
 @app.get("/")
 async def root():
     return RedirectResponse(url="https://github.com/minna-de-hack/schedule-api")
+
+# http://localhost/sample/
+
+@app.get("/sample/", response_class=HTMLResponse)
+async def sample():
+    return """
+    <html>
+        <head>
+            <title>sample HTML</title>
+        </head>
+        <body>
+            <iframe style="border:0" width="400" src="http://localhost/api?title=sample+title&description=Today+is+Friday+in+California&dates=20201201T120000/20201201T121000"></iframe>
+        </body>
+    </html>
+    """
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=80)
