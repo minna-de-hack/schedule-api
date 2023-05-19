@@ -1,4 +1,5 @@
 setuptools
-tqdm
 ipykernel
 fastapi[all]
+arrow
+ics
