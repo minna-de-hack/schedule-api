@@ -1,0 +1,5 @@
+setuptools
+ipykernel
+fastapi[all]
+arrow
+ics
