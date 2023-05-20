@@ -1,8 +1,37 @@
+#home {
+    background-image: linear-gradient(30deg, #6ee4e6, #d8e66e);
+    min-height: 100vh;
+}
+
 .home-content{
     text-align: center;
     margin-top: 10%;
 }
+
 .home-content p{
     font-size: 1.125rem;
     margin: 10px 0 42px;
+}
+
+.big-background{
+    background-size: cover;
+    background-position: center top;
+}
+
+.EmbedCode-content {
+    padding: 15px 0;
+    margin: 0 auto;
+    width: 100%;
+    border-radius: 4px 0 0 4px;
+}
+
+.EmbedCode-code {
+    white-space: nowrap;
+    font: normal normal normal 12px/1.3 Helvetica Neue,sans-serif;
+    line-height: 28px;
+    color: #000;
+    overflow: hidden;
+    display: block;
+    text-overflow: ellipsis;
+    background-color: #fff;
 }
