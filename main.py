@@ -16,6 +16,7 @@ templates = Jinja2Templates(directory="templates")
 async def root():
     return RedirectResponse(url="https://github.com/minna-de-hack/schedule-api")
 
+#http://localhost/api?title=sample+title&description=Today+is+Friday+in+California&dates=20201201T120000/20201201T121000
 @app.get("/api")
 async def make_schedule(request: Request, title: str = "", description: str = "", dates: str = ""):
     context = {"request": request, "title": title, "description": description, "dates":dates}
@@ -38,7 +39,7 @@ async def make_schedule(request: Request, title: str = "", description: str = ""
     context["url"] = baseurl + d_qs
     context["export_url"] = "/api/export?" + urllib.parse.urlencode({"title" : title, "description" : description, "dates" : dates})
 
-    return templates.TemplateResponse("index.html", context)
+    return templates.TemplateResponse("api.html", context)
 
 # http://localhost/api/export?title=sample+title&description=Today+is+Friday+in+California&dates=20201201T120000/20201201T121000
 @app.get("/api/export")
