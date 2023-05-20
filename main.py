@@ -12,13 +12,13 @@ from src.ics_util import export_ics
 
 app = FastAPI()
 app.mount('/templates/css', StaticFiles(directory="templates/css"), name='css')
+app.mount('/templates/js', StaticFiles(directory="templates/js"), name='js')
 
 templates = Jinja2Templates(directory="templates")
 
 @app.get("/")
 async def root(request: Request):
     context = {"request": request, }
-
     return templates.TemplateResponse("index.html", context)
     #return RedirectResponse(url="https://github.com/minna-de-hack/schedule-api")
 
