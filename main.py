@@ -13,6 +13,7 @@ from src.ics_util import export_ics
 app = FastAPI()
 app.mount('/templates/css', StaticFiles(directory="templates/css"), name='css')
 app.mount('/templates/js', StaticFiles(directory="templates/js"), name='js')
+app.mount('/templates/img', StaticFiles(directory="templates/img"), name='img')
 
 templates = Jinja2Templates(directory="templates")
 
