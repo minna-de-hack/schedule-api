@@ -8,8 +8,6 @@ Date : 2023/05/20 ~ 2023/05/21
 
 **「C.H.R.O.N.O.S」という予定管理アプリ**です。
 
-![アプリのアイコン](README-img/icon_last.png)
-
 ## スライド
 ![スライド](README-img/slide.png)
 
