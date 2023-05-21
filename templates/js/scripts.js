@@ -34,7 +34,7 @@ function createTags(){
   var url = url + "?" + urlSearchParam  
 
   var output = document.getElementById("exportTarget");  
-  var tags = `<iframe id="embedded-schedule" scrolling="no" style="border:0" src="${url}" onload="loadInframe()">`
+  var tags = `<iframe id="embedded-schedule" scrolling="no" width = "500" style="border:0" src="${url}" onload="loadInframe()">`
   output.textContent = tags;
 
   var button = document.getElementById("insertbutton");
