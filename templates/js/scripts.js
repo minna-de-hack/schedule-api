@@ -34,7 +34,7 @@ function createTags(){
   var url = url + "?" + urlSearchParam  
 
   var output = document.getElementById("exportTarget");  
-  var tags = `<iframe id="embedded-schedule" scrolling="no" style="border:0" src="${url}"></iframe>`
+  var tags = `<iframe id="embedded-schedule" scrolling="no" style="border:0" src="${url}" onload="loadInframe()">`
   output.textContent = tags;
 
   var button = document.getElementById("insertbutton");
@@ -52,4 +52,10 @@ function createTags(){
  
   var oldDiv = document.getElementById('insertOldElement');
   targetElement.replaceChild(newDiv, oldDiv);
+}
+
+function loadInframe(){
+  var iframe = document.getElementById("embedded-schedule");
+  iframe.style.width = iframe.contentWindow.document.body.scrollWidth + "px";
+  iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 80 + "px";
 }
