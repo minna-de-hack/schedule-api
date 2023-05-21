@@ -6,16 +6,24 @@ import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 
 from src.ics_util import export_ics
 
 app = FastAPI()
+app.mount('/templates/css', StaticFiles(directory="templates/css"), name='css')
+app.mount('/templates/js', StaticFiles(directory="templates/js"), name='js')
+app.mount('/templates/img', StaticFiles(directory="templates/img"), name='img')
+
 templates = Jinja2Templates(directory="templates")
 
 @app.get("/")
-async def root():
-    return RedirectResponse(url="https://github.com/minna-de-hack/schedule-api")
+async def root(request: Request):
+    context = {"request": request, }
+    return templates.TemplateResponse("index.html", context)
+    #return RedirectResponse(url="https://github.com/minna-de-hack/schedule-api")
 
+#http://localhost/api?title=sample+title&description=Today+is+Friday+in+California&dates=20201201T120000/20201201T121000
 @app.get("/api")
 async def make_schedule(request: Request, title: str = "", description: str = "", dates: str = ""):
     context = {"request": request, "title": title, "description": description, "dates":dates}
@@ -38,7 +46,7 @@ async def make_schedule(request: Request, title: str = "", description: str = ""
     context["url"] = baseurl + d_qs
     context["export_url"] = "/api/export?" + urllib.parse.urlencode({"title" : title, "description" : description, "dates" : dates})
 
-    return templates.TemplateResponse("index.html", context)
+    return templates.TemplateResponse("api.html", context)
 
 # http://localhost/api/export?title=sample+title&description=Today+is+Friday+in+California&dates=20201201T120000/20201201T121000
 @app.get("/api/export")
@@ -69,4 +77,4 @@ async def sample():
     """
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=80)
+    uvicorn.run(app,)
