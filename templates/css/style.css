@@ -35,3 +35,14 @@
     text-overflow: ellipsis;
     background-color: #fff;
 }
+.logo {
+    width: 75%;
+    margin: 10px;
+}
+
+.nav-title{
+    height: 15px;
+}
+.nav-logo{
+    height: 50px;
+}

@@ -17,7 +17,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "/usr/local/bin/python -m pip install -U pytest",
+	"postCreateCommand": "/usr/local/bin/python -m pip install -U gunicorn",
 
 	// Configure tool-specific properties.
 	"customizations": {

@@ -3,3 +3,4 @@ ipykernel
 fastapi[all]
 arrow
 ics
+gunicorn

@@ -12,7 +12,10 @@
     <div id = "home" class="big-background">
       <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
         <div class="container-fluid mx-5">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="#"><img class="nav-logo" src="{{ url_for('img', path='/icon.png') }}" alt="logo"></a>
+          <a class="navbar-brand" href="#"><img class="nav-title" src="{{ url_for('img', path='/title_chronos.png') }}" alt="title"></a>
+          
+
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -22,17 +25,16 @@
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                <a class="nav-link" href="https://github.com/minna-de-hack/schedule-api">Link</a>
               </li>
             </ul>
           </div>
         </div>
       </nav>
+
       <div class="home-content wrapper">
-        <h2 class="page-title">C.H.R.O.N.O.S</h2>
+        <div><img class="logo" src="{{ url_for('img', path='/title_chronos.png') }}" alt="logo"></div>
+
         <small class="h4 text-muted"><u><em>Calendar Handling and Reminders for Organizing New Schedules</em></u></small>
         <p>予定の自動登録ボタンの埋め込み用のコードを自動生成するツールです。<br>
           いずれのフォームも空欄で問題ありません</p>
