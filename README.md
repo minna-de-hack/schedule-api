@@ -28,15 +28,10 @@ Date : 2023/05/20 ~ 2023/05/21
 これを使うと、
 「サイト利用者がイベント登録後にGoogleカレンダーに予定を追加する作業が省けるHTML」を取得することができます。
 
-取得するHTMLは、以下のようになります。
+取得するHTMLは、例えば以下のようになります。
 
 ```HTML
-<iframe 
-        id="embedded-schedule" 
-        scrolling="no" 
-        style="border:0" 
-        src="http://127.0.0.1:8000/api?title=TEST&description=%E3%81%93%E3%82%8C%E3%81%AF%E3%83%86%E3%82%B9%E3%83%88%E3%81%A7%E3%81%99&dates=T00%2FT00" 
-        onload="loadInframe()">
+<iframe id="embedded-schedule" scrolling="no" style="border:0" src="http://127.0.0.1:8000/api?title=EventTitle&description=some+description&dates=20230520T110000%2F20230521T150000" onload="loadInframe()">
 ```
 
 ## 利用方法
