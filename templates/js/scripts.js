@@ -1,75 +1,55 @@
 function copyToClipboard() {
-    var exportTarget = document.getElementById("exportTarget").innerText;
-    navigator.clipboard.writeText(exportTarget)
-    .then(() => {
-      console.log("テキストがクリップボードにコピーされました");
-      alert("クリップボードにコピーされました");
-    })
-    .catch((error) => {
-      console.error("コピーに失敗しました", error);
-      alert("コピーに失敗しました : " + error);
-    });
+  var exportTarget = document.getElementById("exportTarget").innerText;
+  navigator.clipboard.writeText(exportTarget)
+  .then(() => {
+    console.log("テキストがクリップボードにコピーされました");
+    alert("クリップボードにコピーされました");
+  })
+  .catch((error) => {
+    console.error("コピーに失敗しました", error);
+    alert("コピーに失敗しました : " + error);
+  });
 }
 
 function createTags(){
-    var title = document.getElementById("titleInput").value;
-    var description = document.getElementById("descriptionInput").value;
-    var start = document.getElementById("startDatesInput").value;
-    var end = document.getElementById("endDatesInput").value;
+  const title = document.getElementById("titleInput").value;
+  const description = document.getElementById("descriptionInput").value;
+  const startDates = document.getElementById("startDatesInput").value; // "2023-05-10"
+  const startTime = document.getElementById("startTimeInput").value; // "21:10"
+  const endDates = document.getElementById("endDatesInput").value; // "2023-05-10"
+  const endTime = document.getElementById("endTimeInput").value; // "21:10"
 
-    console.log("入力された情報:", title);    
+  var startDatesTime = startDates.split("-").join('') +"T"+ startTime.split(":").join('') + "00"
+  var endDatesTime = endDates.split("-").join('') +"T"+ endTime.split(":").join('') + "00"
 
-    var output = document.getElementById("exportTarget");
-    var tags = ""
+  var url = window.location.origin + "/api"
 
-    output.textContent = tags;
+  const params = {
+      title: title == "" ? "無題" : title,
+      description: description,
+      dates: startDatesTime + "/" + endDatesTime
+  }
+  const urlSearchParam =  new URLSearchParams(params).toString();
+
+  var url = url + "?" + urlSearchParam  
+
+  var output = document.getElementById("exportTarget");  
+  var tags = `<iframe id="embedded-schedule" scrolling="no" style="border:0" src="${url}"></iframe>`
+  output.textContent = tags;
+
+  var button = document.getElementById("insertbutton");
+  button.innerHTML = `<button class="btn btn-outline-secondary" onclick="copyToClipboard()">Copy text</button>`;
+
+  // insertElements
+  var targetElement = document.getElementById("insertElement");
+
+  var newDiv = document.createElement("div");
+  newDiv.textContent = "新しい要素がここに表示されます";
+  newDiv.setAttribute("id", "insertOldElement");
+
+  var inner = `<a>Sample</a><div class="EmbedCode-sample-content">${tags}</div>`;
+  newDiv.innerHTML = inner;
+ 
+  var oldDiv = document.getElementById('insertOldElement');
+  targetElement.replaceChild(newDiv, oldDiv);
 }
-// https://github.com/minna-de-hack/testHTML/blob/main/src/views/WatchView.vue
-// 
-// import Event from '../assets/event.json'
-// import { useRouter } from 'vue-router'
-// import { ref, onMounted } from 'vue'
-
-// const router = useRouter()
-
-// const eventData = Event.event
-// const title = ref()
-// const description = ref()
-// const date_start = ref()
-// const date_end = ref()
-// const URL = ref()
-
-// onMounted(() => {
-//     const num = Number( location.pathname.split("/").slice(-2)[1] )
-//     title.value = eventData[num]["title"]
-//     description.value = eventData[num]["description"]
-//     date_start.value = ChangeDate(eventData[num]["date_start"])
-//     date_end.value = ChangeDate(eventData[num]["date_end"])
-
-//     createURL(title.value, description.value, date_start.value, date_end.value)
-// })
-
-// const ChangeDate = (dateString) => {
-//     const year = parseInt(dateString.substr(0, 4));
-//     const month = parseInt(dateString.substr(4, 2)) - 1;
-//     const day = parseInt(dateString.substr(6, 2));
-//     const hours = parseInt(dateString.substr(9, 2));
-//     const minutes = parseInt(dateString.substr(11, 2));
-//     const seconds = parseInt(dateString.substr(13, 2));
-
-//     const date = new Date(year, month, day, hours, minutes, seconds);
-//     const formattedDate = `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getDate().toString().padStart(2, '0')} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}`;
-//     return formattedDate
-// }
-
-// const createURL = (title, description, date_start, date_end) => {
-//     URL.value = "http://127.0.0.1:8000/api?title=" + title + "&description=" + description + "&dates=" + date_start + "/" + date_end
-// }
-
-// const HOME = () => {
-//     router.push('/')
-// }
-
-// const Registration = () => {
-//     alert("参加登録をしました")
-// }

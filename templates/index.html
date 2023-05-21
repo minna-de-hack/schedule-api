@@ -38,42 +38,64 @@
           いずれのフォームも空欄で問題ありません</p>
           <div class="container" style="width: 50%;">
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="titleInput" placeholder="title">
+              <input type="text" class="form-control" id="titleInput" placeholder="title" required="required">
               <label for="titleInput">タイトル</label>
             </div>
-    
             <div class="form-floating mb-3">
               <input type="text" class="form-control" id="descriptionInput" placeholder="description">
               <label for="descriptionInput">説明</label>
             </div>
-    
+            <label for="startDatesInput">開始</label>
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="startDatesInput" placeholder="start">
-              <label for="startDatesInput">開始日時</label>
+              <div class="row">
+                <div class="col">
+                  <input type="date" class="form-control" id="startDatesInput" placeholder="start">
+                </div>
+                <div class="col">
+                  <input type="time" class="form-control" id="startTimeInput" placeholder="start">
+                </div>
+              </div>
             </div>
+            <label for="endDatesInput">終了</label>
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="endDatesInput" placeholder="end">
-              <label for="endDatesInput">終了日時</label>
+              <div class="row">
+                <div class="col">
+                  <input type="date" class="form-control" id="endDatesInput" placeholder="end">
+                </div>
+                <div class="col">
+                  <input type="time" class="form-control" id="endTimeInput" placeholder="end">
+                </div>
+              </div>
             </div>
           </div>
-          
-        <button type="button" class="btn btn-outline-primary btn-lg mb-3" onclick="createTags()">コード生成</button>
 
-        <!-- <div class="container" style="width: 50%;">
-          <pre><code>ここにコードを書くここにコードを書くここにコーここにコードを書くここにコードを書くここにコードを書くドを書くここにコードを書く</code></pre>
-        </div> -->
+        <button type="button" class="btn btn-outline-primary btn-lg mb-3" onclick="createTags()">コード生成</button>
 
         <div class="container" style="width: 50%;">
           <div class="EmbedCode-content">
             <samp>
               <code class="EmbedCode-code" id="exportTarget" data-lang="html">
-                &lt;blockquote class="twitter-tweet"&gt;&lt;p lang="en" dir="ltr"&gt;Sunsets don&amp;#39;t get much better than this one over &lt;a href="https://twitter.com/GrandTetonNPS?ref_src=twsrc%5Etfw"&gt;@GrandTetonNPS&lt;/a&gt;. &lt;a href="https://twitter.com/hashtag/nature?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#nature&lt;/a&gt; &lt;a href="https://twitter.com/hashtag/sunset?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#sunset&lt;/a&gt; &lt;a href="http://t.co/YuKy2rcjyU"&gt;pic.twitter.com/YuKy2rcjyU&lt;/a&gt;&lt;/p&gt;&amp;mdash; US Department of the Interior (@Interior) &lt;a href="https://twitter.com/Interior/status/463440424141459456?ref_src=twsrc%5Etfw"&gt;May 5, 2014&lt;/a&gt;&lt;/blockquote&gt;
-                &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
               </code>
             </samp>
           </div>
-          <button class="btn btn-outline-secondary" onclick="copyToClipboard()">Copy text</button>
+          <div id="insertbutton">
+            
+          </div>
         </div>
+
+        <div id="insertElement">
+          <div id="insertOldElement"></div>
+        </div>
+       
+        <!-- <iframe id="embedded-schedule" scrolling="no" src="http://localhost/api?title=%E7%84%A1%E9%A1%8C&description=&dates=T00%2FT00"></iframe>
+        <script>
+        let iframe = document.getElementById("embedded-schedule");
+        window.addEventListener("load", function () {
+          iframe.style.width = iframe.contentWindow.document.body.scrollWidth + "px";
+          iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 80 + "px" ;
+        });
+        </script> -->
+
       </div>
     </div>
 
